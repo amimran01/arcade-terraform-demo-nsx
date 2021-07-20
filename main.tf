@@ -34,8 +34,13 @@ variable "nsx_password" {
   sensitive   = true
 }
 
-resource "nsxt_policy_group" "wordpress" {
-  display_name = "Test Group"
+variable "security_group_name" {
+  description = "security group name"
+  type        = string
+}
+
+resource "nsxt_policy_group" "security_group" {
+  display_name = var.security_group_name
   description  = "Terraform provisioned Group"
   criteria {
     condition {
